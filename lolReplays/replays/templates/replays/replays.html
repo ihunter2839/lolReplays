@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1> Welcome to LolReplays </h1>
+		<h2> A shitty website for shitty league players </h2>
+		<p> (that sometimes do cool things) </p>
+		<a href="/replays/upload" />
+			upload a replay
+		</a>
+		<ul>
+			{% for replay in replays %}
+			<li>
+				<h3> {{ replay.title }} by {{ replay.summoner }} </h3>
+				<a href="{{ replay.replay.url }}">
+					http://13.52.250.253{{ replay.replay.url }}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
