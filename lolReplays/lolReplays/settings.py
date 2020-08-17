@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'replays.apps.ReplaysConfig',
     'rest_framework',
+    'account',
 ]
 
 MIDDLEWARE = [
