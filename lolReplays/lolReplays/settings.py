@@ -27,7 +27,10 @@ SECRET_KEY =  os.environ.get('DJANGO_LOLREPLAYS_KEY', 'fsix20k^+x7*sk4-)w=o&y5z9
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_LOLREPLAYS_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '13.52.250.253',
+    'lolreplays.in'
+]
 
 # Application definition
 
