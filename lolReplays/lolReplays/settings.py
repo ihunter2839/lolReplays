@@ -24,12 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY =  os.environ.get('DJANGO_LOLREPLAYS_KEY', 'fsix20k^+x7*sk4-)w=o&y5z9aj2#6bzj!!$jj&+qx&xat(cl#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.environ.get('DJANGO_LOLREPLAYS_DEBUG', '') != 'False'
+DEBUG = True
+#DEBUG = os.environ.get('DJANGO_LOLREPLAYS_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     '13.52.250.253',
-    'lolreplays.in'
+    'lolreplays.in',
+    "*",
 ]
 
 # Application definition
@@ -43,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'replays.apps.ReplaysConfig',
     'rest_framework',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +127,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATIC_URL = '/static/'
 

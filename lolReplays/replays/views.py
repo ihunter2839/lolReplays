@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
 
 from .forms import UploadForm
 from .models import Replay
@@ -7,7 +8,7 @@ from .models import Replay
 def replay_list(request):
     if request.method == 'GET':
         replays = Replay.objects.all()
-        return render(
+        return compose_page(
             request, 
             'replays/replays.html', 
             {
@@ -27,4 +28,21 @@ def upload_replay(request):
             return HttpResponseRedirect(replay.replay.url)
     else:
         form = UploadForm()
-    return render(request, 'replays/upload.html', {'form': form})
+    return compose_page(
+        request, 
+        'replays/upload.html', 
+        {
+            'form': form
+        }
+    )
+
+def compose_page(request, template, context):
+    header = loader.render_to_string("replays/header.html")
+    footer = loader.render_to_string("replays/footer.html")
+    content = loader.render_to_string(template, context)
+
+    return render(request, 'replays/page.html', {
+        "header": header,
+        "content": content,
+        "footer": footer
+    })

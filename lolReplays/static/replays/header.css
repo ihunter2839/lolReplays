@@ -1,0 +1,10 @@
+header {
+	display: flex;
+	flex-direction: row;
+	height: 8vh;
+	width: 100vw;
+}
+
+.header_link:first-child {
+	margin-left: auto;
+}
