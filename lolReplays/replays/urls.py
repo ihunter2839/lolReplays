@@ -3,5 +3,6 @@ from replays import views
 
 urlpatterns = [
     path('', views.replay_list, name="replays"),
-    path('upload', views.upload_replay, name="upload"),
+    path('replay/<int:pk>', views.replay_detail, name="replay"),
+    path('upload/', views.upload_replay, name="upload"),
 ]

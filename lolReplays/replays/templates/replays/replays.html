@@ -1,15 +1,22 @@
-<h1> Welcome to LolReplays </h1>
-<h2> A shitty website for shitty league players </h2>
+{% load static %}
+<link rel="stylesheet" href="{% static "replays/css/replays.css" %}"/>
+<h1> Welcome to LoL Replays </h1>
+<h3> A shitty website for shitty league players </h3>
 <p> (that sometimes do cool things) </p>
-<a href="/replays/upload" />
-	upload a replay
-</a>
+<h3> Latest Replay </h3>
+<h4><b>{{latest.title}}</b> by <i>{{latest.summoner}}</i> </h4>
+<video controls>
+	<source src="{{latest.replay.url}}" type="video/webm">
+</video>
 <ul>
 	{% for replay in replays %}
 	<li>
-		<h3> {{ replay.title }} by {{ replay.summoner }} </h3>
-		<a href="{{ replay.replay.url }}">
-			http://13.52.250.253{{ replay.replay.url }}
+		<a href="/replay/{{ replay.pk }}">
+			<h4>
+				<b>{{replay.title}}</b> 
+				by 
+				<i>{{replay.summoner}}</i> 
+			</h4>
 		</a>
 	</li>
 	{% endfor %}

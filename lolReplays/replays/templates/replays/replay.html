@@ -1,0 +1,7 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "replays/css/replay.css" %}" />
+<h3> {{ replay.title }} </h3>
+<h5> by {{ replay.summoner }} </h5>
+<video controls>
+	<source src="{{replay.replay.url}}" type="video/webm">
+</video>

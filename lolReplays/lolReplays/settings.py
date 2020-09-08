@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'replays.apps.ReplaysConfig',
+    'cards.apps.CardsConfig',
     'rest_framework',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,9 @@ ROOT_URLCONF = 'lolReplays.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'cards/build'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lolReplays.wsgi.application'
 
+ASGI_APPLICATION = 'lolReplays.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -127,9 +132,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = '/home/ubuntu/lolReplays/lolReplays/static'
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'cards/build/static'),
+]
 
 MEDIA_ROOT = '/home/ubuntu/lolReplays/media/'
 

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+# create the tmp folder for lolReplays related sockets
+sudo mkdir /tmp/lolReplays
+sudo chown -R www-data:www-data /tmp/lolReplays
+sudo chmod -R 774 /tmp/lolReplays
+
+/home/ubuntu/.local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+
+exit 0

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
@@ -12,7 +12,19 @@ def replay_list(request):
             request, 
             'replays/replays.html', 
             {
-                'replays': replays,
+                'replays': replays[1:],
+                'latest': replays[0]
+            }
+        )
+
+def replay_detail(request, pk):
+    if request.method == 'GET':
+        replay = get_object_or_404(Replay, pk=pk)
+        return compose_page(
+            request,
+            'replays/replay.html',
+            {
+                'replay': replay,
             }
         )
 
@@ -25,7 +37,7 @@ def upload_replay(request):
                 title=request.POST['title'],
                 replay=request.FILES['replay']
             )
-            return HttpResponseRedirect(replay.replay.url)
+            return HttpResponseRedirect("/replay/"+str(replay.pk))
     else:
         form = UploadForm()
     return compose_page(
@@ -39,7 +51,7 @@ def upload_replay(request):
 def compose_page(request, template, context):
     header = loader.render_to_string("replays/header.html")
     footer = loader.render_to_string("replays/footer.html")
-    content = loader.render_to_string(template, context)
+    content = loader.get_template(template).render(context, request)
 
     return render(request, 'replays/page.html', {
         "header": header,

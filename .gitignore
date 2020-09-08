@@ -3,4 +3,8 @@ media
 
 lolReplays/manage.py
 
+lolReplays/cards/__pycache__
+lolReplays/cards/node_modules
+lolReplays/cards/package-lock.json
+
 *.py[cod]
